@@ -1,0 +1,20 @@
+﻿@model VentaAccesorioss.Models.Producto
+@{ ViewData["Title"] = "Nuevo producto"; }
+
+<h2 class="titulo mb-4">➕ Nuevo producto</h2>
+<form asp-action="Create" class="form-card col-md-7">
+    <div class="mb-3"><label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" /><span asp-validation-for="Nombre" class="text-danger"></span></div>
+    <div class="mb-3"><label asp-for="Categoria" class="form-label"></label>
+        <input asp-for="Categoria" class="form-control" placeholder="Funda, Cargador, Cable, Audifonos, Bateria, Mica..." /></div>
+    <div class="mb-3"><label asp-for="IdMarca" class="form-label">Marca</label>
+        <select asp-for="IdMarca" class="form-select" asp-items="ViewBag.IdMarca"></select></div>
+    <div class="row">
+        <div class="col mb-3"><label asp-for="Precio" class="form-label"></label>
+            <input asp-for="Precio" class="form-control" /></div>
+        <div class="col mb-3"><label asp-for="Stock" class="form-label"></label>
+            <input asp-for="Stock" class="form-control" /></div>
+    </div>
+    <button type="submit" class="btn btn-accent">Guardar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill">Cancelar</a>
+</form>

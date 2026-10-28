@@ -1,0 +1,50 @@
+﻿@model IEnumerable<VentaAccesorioss.Models.Producto>
+@using VentaAccesorioss.Helpers
+@{
+    ViewData["Title"] = "Inicio";
+    var cats = new[] { ("Funda","Fundas"), ("Cargador","Cargadores"), ("Cable","Cables"), ("Audifonos","Audífonos"), ("Bateria","Baterías"), ("Mica","Micas") };
+}
+<section class="hero">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+            <h1 class="display-5">Todo para tu celular, en un solo lugar</h1>
+            <p class="lead">Fundas, cargadores, micas, audífonos y más al mejor precio.</p>
+            <a class="btn btn-accent btn-lg" asp-controller="Productos" asp-action="Index">Ver productos →</a>
+        </div>
+        <div class="col-md-6 text-center mt-4 mt-md-0">
+            <img class="hero-img img-fluid" src="~/img/productos/hero.png" alt="Accesorios para celular" />
+        </div>
+    </div>
+</section>
+
+<h3 class="titulo mt-5 mb-3">Categorías</h3>
+<div class="row g-3">
+@foreach (var (clave, nombre) in cats)
+{
+    <div class="col-6 col-md-4 col-lg-2">
+        <a class="cat-link" asp-controller="Productos" asp-action="Index" asp-route-q="@clave">
+            <div class="card tarjeta-cat text-center">
+                <div class="img-wrap"><img src="@ImagenHelper.Para(clave)" alt="@nombre" /></div>
+                <div class="py-2">@nombre</div>
+            </div>
+        </a>
+    </div>
+}
+</div>
+
+<h3 class="titulo mt-5 mb-3"> Destacados</h3>
+<div class="row g-4">
+@foreach (var p in Model)
+{
+    <div class="col-6 col-lg-3">
+        <div class="card tarjeta-prod h-100">
+            <div class="img-wrap"><img src="@ImagenHelper.Para(p.Categoria)" alt="@p.Nombre" /></div>
+            <div class="card-body">
+                <span class="badge badge-cat mb-2">@p.Categoria</span>
+                <h6 class="mb-1">@p.Nombre</h6>
+                <div class="precio">@p.Precio.ToString("C")</div>
+            </div>
+        </div>
+    </div>
+}
+</div>

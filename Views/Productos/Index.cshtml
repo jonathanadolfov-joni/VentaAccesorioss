@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VentaAccesorioss.Models.Producto>
+@using VentaAccesorioss.Helpers
+@{ ViewData["Title"] = "Productos"; }
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <h2 class="titulo m-0"> Productos</h2>
+    <a asp-action="Create" class="btn btn-accent">+ Nuevo producto</a>
+</div>
+
+<input id="buscar" type="search" class="form-control buscador mb-4" placeholder="🔍 Buscar por nombre, categoría o marca..." />
+
+<div class="row g-4" id="grid">
+@foreach (var p in Model)
+{
+    <div class="col-6 col-md-4 col-lg-3 item" data-texto="@($"{p.Nombre} {p.Categoria} {p.IdMarcaNavigation?.Nombre}".ToLower())">
+        <div class="card tarjeta-prod h-100">
+            <div class="img-wrap"><img src="@ImagenHelper.Para(p.Categoria)" alt="@p.Nombre" /></div>
+            <div class="card-body d-flex flex-column">
+                <div class="mb-2">
+                    <span class="badge badge-cat">@p.Categoria</span>
+                    <span class="badge bg-light text-dark border">@p.IdMarcaNavigation?.Nombre</span>
+                </div>
+                <h6 class="mb-2">@p.Nombre</h6>
+                <div class="precio mt-auto">@p.Precio.ToString("C")</div>
+                @if (p.Stock <= 0) { <small class="text-danger fw-semibold">Agotado</small> }
+                else if (p.Stock <= 15) { <small class="text-warning fw-semibold">¡Últimas @p.Stock piezas!</small> }
+                else { <small class="text-success fw-semibold">Disponible (@p.Stock)</small> }
+            </div>
+        </div>
+    </div>
+}
+</div>
+<p id="vacio" class="text-center text-muted mt-4 d-none">No se encontraron productos 😕</p>
+
+@section Scripts {
+<script>
+    const caja = document.getElementById('buscar');
+    const items = document.querySelectorAll('.item');
+    function filtrar() {
+        const q = caja.value.trim().toLowerCase();
+        let vis = 0;
+        items.forEach(i => { const ok = i.dataset.texto.includes(q); i.classList.toggle('d-none', !ok); if (ok) vis++; });
+        document.getElementById('vacio').classList.toggle('d-none', vis > 0);
+    }
+    caja.addEventListener('input', filtrar);
+    caja.value = new URLSearchParams(location.search).get('q') ?? '';
+    filtrar();
+</script>
+}

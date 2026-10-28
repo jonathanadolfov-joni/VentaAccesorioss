@@ -1,0 +1,37 @@
+:root { --azul:#1b2a49; --azul2:#2d4a7c; --acento:#00b4d8; --morado:#7b2ff7; --sombra:0 10px 30px rgba(27,42,73,.12); }
+html { font-size: 15px; }
+body { font-family:'Poppins',system-ui,sans-serif; background:#f4f7fb; }
+
+/* Barra */
+.barra-principal { background:linear-gradient(90deg,var(--azul),var(--azul2)); box-shadow:0 4px 16px rgba(0,0,0,.2); }
+.barra-principal .navbar-brand { font-weight:700; letter-spacing:.3px; }
+.barra-principal .nav-link { color:#dfe7f5; font-weight:500; border-radius:8px; margin:0 2px; transition:.2s; }
+.barra-principal .nav-link:hover { color:#fff; background:rgba(255,255,255,.12); }
+
+.titulo { color:var(--azul); font-weight:700; }
+.btn-accent { background:linear-gradient(90deg,var(--acento),var(--morado)); color:#fff; border:none; border-radius:50px; padding:.5rem 1.4rem; font-weight:600; transition:.2s; }
+.btn-accent:hover { color:#fff; transform:translateY(-2px); box-shadow:0 8px 18px rgba(123,47,247,.35); }
+
+/* Hero */
+.hero { padding:50px 40px; background:linear-gradient(135deg,var(--azul),var(--azul2) 60%,var(--morado)); color:#fff; border-radius:24px; box-shadow:var(--sombra); overflow:hidden; }
+.hero h1 { font-weight:800; }
+.hero-img { max-height:340px; animation:flotar 4s ease-in-out infinite; }
+@keyframes flotar { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+/* Tarjetas */
+.tarjeta-prod, .tarjeta-cat { border:none; border-radius:18px; overflow:hidden; box-shadow:var(--sombra); transition:.25s; background:#fff; }
+.tarjeta-prod:hover, .tarjeta-cat:hover { transform:translateY(-8px); box-shadow:0 18px 38px rgba(27,42,73,.22); }
+.tarjeta-prod img, .tarjeta-cat img { width:100%; aspect-ratio:4/3; object-fit:cover; transition:.3s; }
+.tarjeta-prod:hover img, .tarjeta-cat:hover img { transform:scale(1.07); }
+.img-wrap { overflow:hidden; position:relative; }
+.precio { font-size:1.35rem; font-weight:700; color:var(--azul); }
+.badge-cat { background:#e0f7fb; color:#00758c; }
+.cat-link { text-decoration:none; color:var(--azul); font-weight:600; }
+
+/* Marcas y usuarios */
+.avatar { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--acento),var(--morado)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:700; flex-shrink:0; }
+
+.buscador { border-radius:50px; padding:.6rem 1.2rem; border:2px solid #dbe4f3; }
+.buscador:focus { border-color:var(--acento); box-shadow:0 0 0 .2rem rgba(0,180,216,.2); }
+.form-card { background:#fff; border-radius:18px; box-shadow:var(--sombra); padding:28px; }
+.footer { background:var(--azul); color:#c9d6ee; line-height:60px; text-align:center; }
